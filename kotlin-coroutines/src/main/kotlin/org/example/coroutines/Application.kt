@@ -1,4 +1,4 @@
-package org.example.traditional
+package org.example.coroutines
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
@@ -7,7 +7,6 @@ import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
-import reactor.core.publisher.Mono
 
 @SpringBootApplication
 class Application
@@ -23,11 +22,11 @@ class Controller(
 ) {
 
     @GetMapping(produces = [MediaType.APPLICATION_JSON_VALUE])
-    fun nextval(): Mono<Map<String, Long?>> {
+    suspend fun nextval(): Map<String, Long?> {
         val nextval = jdbcTemplate.queryForObject(
             "select nextval('db_seq')",
             Long::class.java,
         )
-        return Mono.just(mapOf("nextval" to nextval))
+        return mapOf("nextval" to nextval)
     }
 }
