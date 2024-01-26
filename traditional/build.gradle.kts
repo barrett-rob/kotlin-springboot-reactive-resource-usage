@@ -13,12 +13,14 @@ version = "0.0.1-SNAPSHOT"
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
     implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.liquibase:liquibase-core")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
-}
 
-springBoot {
-    mainClass = "org.example.traditional.Application"
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+
+    implementation("org.jetbrains.kotlin:kotlin-reflect")
+
+    implementation("org.postgresql:postgresql:42.7.1")
+
+    implementation("org.liquibase:liquibase-core")
+
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
