@@ -1,17 +1,17 @@
 # kotlin-springboot-reactive-resource-usage
 
-A quick comparison of spring boot resource usage with reactive vs traditional methods.
+A quick comparison of spring boot per-request resource usage with reactive vs traditional MVC methods.
 
-This experiment is very contrived - the difference between the three examples below is just
-the threading behaviour at the web request handling layer. Your results will differ if you 
-introduce more sophisticated underlying IO operations, but in general the following results are shown:
+This experiment is contrived - the difference between the three examples below is just the
+threading behaviour at the web request handling layer. Your results will differ if you introduce
+more variation in underlying IO operations, but in general the following results are shown:
 
-- Traditional MVC used a lot of threads, Coroutines about half as much and Reactor even less.
-- Traditional MVC used the most heap, Coroutines less, and Reactor even less.
+- Traditional MVC used the most threads, Coroutines about half as much, and Reactor even less.
+- Traditional MVC used the most heap/memory, Coroutines less, and Reactor even less.
 
 Some thoughts following from this:
 
-- If cost of computing resources is your goal then choose Reactor, but at the expense of imperative coding styles.
+- If minimising cost of computing per request is your only goal then choose Reactor, at the expense of imperative coding styles.
 - Coroutines give definite memory & threading advantages over MVC without changing coding styles.
 
 ### Method
